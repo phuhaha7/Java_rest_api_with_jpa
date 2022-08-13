@@ -1,12 +1,12 @@
 package com.example.backend.student;
 
 import javax.persistence.*;
-
+@Entity
 @Table(name = "student", uniqueConstraints = {
         @UniqueConstraint(name = "student_email_unique", columnNames = "email")
 })
-@Entity(name = "student")
 public class Student {
+    @Id
     @Column(name = "id", updatable = false)
     @SequenceGenerator(
             name = "student_sequence",
@@ -14,11 +14,11 @@ public class Student {
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
     private Long id;
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(name = "firstName", nullable = false, columnDefinition = "TEXT")
     private String firstName;
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(name = "lastName", nullable = false, columnDefinition = "TEXT")
     private String lastName;
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(name = "email", nullable = false, columnDefinition = "TEXT")
     private String email;
 
     public Student() {
@@ -30,9 +30,17 @@ public class Student {
         this.email = email;
     }
 
+    public Student(Long id, String firstName, String lastName, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }
+
 
     public String getFirstName() {
         return firstName;

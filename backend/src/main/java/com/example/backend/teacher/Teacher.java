@@ -1,5 +1,10 @@
 package com.example.backend.teacher;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Table(name = "teacher",
@@ -7,6 +12,10 @@ import javax.persistence.*;
                 name = "teacher_email_unique",
                 columnNames = "email")})
 @Entity(name = "teacher")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Teacher {
     @Column(name = "id", updatable = false)
     @SequenceGenerator(
